@@ -7,27 +7,45 @@
   <title>Elephants To Mars</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Cinzel+Decorative|Kelly+Slab|Lora|Nova+Flat|Raleway+Dots" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
   <header>
-    <!-- <h1>OMDB Search</h1> -->
+    <div class="menu">
+      <section class="welcome">
+        <p>WELCOME TO SPACE</p>
+      </section>
+      <form id="user-selection" class="user-form">
+        <p class="top-text1 para">How many </p>
+        <select class="browser-default box1">
+          <option value="" disabled selected>Elephants</option>
+          <option value="1">Stacked US Dollars</option>
+        </select>
+        <p class="top-text2 para">between Earth and</p>
+        <select class="browser-default box2">
+          <option value="" disabled selected>Mars</option>
+          <option value="1">The Sun</option>
+        </select>
+        <button class="button" type="submit" name="Calculate">?
+        </button>
+      </form>
+    </div>
   </header>
   <main>
-    <!-- <form id="movie-title">
-      <label for="search">Search OMDB</label>
-      <input type="text" name="search" placeholder="Enter Title">
-      <button type="submit" name="searchButton">Search</button>
-    </form> -->
     <section class="earth-container">
-      <!-- Append earth photos here -->
-      <div class="menu">
-        <section class="welcome"><h1>WELCOME  TO  SPACE</h1></section>
-      </div>
+      <!-- Append and cycle through earth photos here -->
     </section>
-
-
+    <section class="mars-container">
+      <img src="https://mars.nasa.gov/images/mars-globe-valles-marineris-enhanced-br2.jpg" alt="Destination">
+    </section>
+    <section class="object-container">
+      <img src="http://www.pngmart.com/files/4/Elephant-Transparent-Background.png" alt="object">
+    </section>
+    <section class="value">
+      <p>9,100,000,000</p>
+    </section>
   </main>
   <script src="app.js" charset="utf-8"></script>
 </body>

@@ -4,34 +4,116 @@
 
 body {
   background-color: black;
-  margin-top: 0;
+  background-image: url(https://i.ytimg.com/vi/EZ7la-hMNuk/maxresdefault.jpg);
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+}
+
+.welcome, .value {
+  color: white;
+  font-family: 'Raleway Dots', cursive;
+  font-size: 60px;
+  opacity: 0;
+}
+
+.user-form {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  opacity: 0;
+}
+
+.para {
+  color: white;
+  padding-top: 5px;
+  margin: 0 10px;
+  font-family: 'Nova Flat', cursive;
+  font-size: 18px;
+}
+
+.top-text1 {
+  width: 95px;
+}
+
+.top-text2 {
+  width: 165px;
+  margin-left: 20px;
+}
+
+.browser-default {
+  width: auto;
+  /*width: 130px;*/
+  height: 35px;
+  font-family: 'Nova Flat', cursive;
+}
+
+.button {
+  background: darkblue;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(blue, darkblue);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(blue, darkblue);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(blue, darkblue);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(blue, darkblue);
+  /* Standard syntax */
+  border: 0;
+  border-radius: 3px;
+  font-family: 'Nova Flat', cursive;
+  color: white;
+  width: 60px;
+  height: 35px;
+  margin-left: 20px;
+}
+
+.button:hover {
+  box-shadow: 0 12px 16px 0 rgba(255, 189, 0, 0.1), 0 15px 30px 0 rgba(255, 180, 0, 0.02);
 }
 
 .earth-container {
   display: flex;
   justify-content: center;
-  position: relative;
-  /*top:0;*/
-  width: 100%;
-  height: 200%;
-  /*margin-top: 0;*/
-  /*border: 2px solid white;*/
 }
 
 .earth-container img {
   position: absolute;
   width: 55%;
-  clip: rect(60px, 1000px, 1000px, 0px);
-  padding-top: 40px;
-  /*border: 2px solid white;*/
+  /*clip-path: inset(10% 10% 10% 10%);*/
+  clip-path: circle(38% at center);
+  /*padding-top: 40px;*/
 }
 
-.welcome {
-  color: white;
-  font-family: 'Raleway Dots', cursive;
-  font-size: 40px;
+.mars-container img {
+  position: absolute;
   opacity: 0;
-  margin-top: 10px;
+  right: 10%;
+  top: 40%;
+  width: 70px;
+}
+
+.object-container {
+  display: flex;
+  justify-content: center;
+}
+
+.object-container img {
+  position: absolute;
+  opacity: 0;
+  /*left: 40%;*/
+  top: 30%;
+  width: 100px;
+}
+
+.value {
+  position: absolute;
+  font-size: 35px;
+  top: 20%;
+  left: 40%;
 }
 
 
@@ -55,13 +137,48 @@ body {
   }*/
   .earth-container img {
     width: 100%;
-    clip: rect(0px, 1000px, 1000px, 0px);
+
   }
-  .welcome {
-    color: white;
+  .mars-container img {
+    width: 20px;
+  }
+  .object-container img {
+    width: 80px;
+    top: 20%;
+  }
+  .value {
+    font-size: 20px;
+    top: 10%;
+    left: 10%;
+  }
+  .menu {
+    margin-top: 20px;
+  }
+  .welcome, .value {
     font-family: 'Nova Flat', cursive;
-    font-size: 35px;
-    margin-top: 450px;
     text-align: center;
+  }
+  .user-form {
+    flex-direction: column;
+    margin-top: 100%;
+  }
+  .para {
+    margin: 5px 0;
+    font-size: 20px;
+    text-align: center;
+  }
+  .top-text1 {
+    width: 100%;
+  }
+  .top-text2 {
+    width: 100%;
+  }
+  .browser-default {
+    width: 80%;
+    height: 40px;
+  }
+  .button {
+    margin-top: 10px;
+    width: 100px;
   }
 }
