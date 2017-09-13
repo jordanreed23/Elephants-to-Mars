@@ -1,16 +1,19 @@
 //////----Declare Global Variables ----//////
 
 var form = document.getElementById("user-selection");
+var formRandom = document.getElementById("randomize");
 var earth = document.getElementsByClassName('earth-container')[0];
 var header = document.getElementsByClassName('welcome')[0];
 var box1 = document.getElementsByClassName('box1')[0];
 var box2 = document.getElementsByClassName('box2')[0];
+var select1 = document.getElementsByClassName('first')[0];
+var select2 = document.getElementsByClassName('second')[0];
 var countPara = document.getElementById('theCount');
 var objImg = document.getElementById('object-image');
 var destImg = document.getElementById('destination-image');
+var funFact = document.getElementById('fun-fact');
 
 var counter = 0;
-
 
 /////------ Functions------////////
 
@@ -61,6 +64,9 @@ function submitted(objectIn, destinationIn) {
   $("#theCount").animate({
     opacity: '0'
   }, 500);
+  $("#fun-fact").animate({
+    opacity: '0'
+  }, 500);
 
   setTimeout(function() {
     objImg.setAttribute('src', '');
@@ -80,26 +86,53 @@ function submitted(objectIn, destinationIn) {
       opacity: '1'
     }, 1000);
   }, 1000);
+
+  setTimeout(function() {
+    $("#fun-fact").animate({
+      opacity: '1'
+    }, 4000);
+  }, 2000);
 }
 
+
 function fetchData(objectIn, destinationIn) {
-  var solution = data.destinations[destinationIn].distance / data.objects[objectIn].length;
+  var obOb = data.objects[objectIn];
+  var distOb = data.destinations[destinationIn];
+  var solution = distOb.distance / obOb.width;
+  var factMath = 0;
   countPara.innerText = makeReadable(solution);
-  objImg.setAttribute('src', data.objects[objectIn].img);
-  destImg.setAttribute('src', data.destinations[destinationIn].img);
+  objImg.setAttribute('src', obOb.img);
+  destImg.setAttribute('src', distOb.img);
+
+  if (obOb.fact[4] === 'tiny') {
+    factMath = makeReadable((obOb.fact[3] * solution) / obOb.fact[2]);
+  } else if (obOb.fact[4] === 'speed') {
+    factMath = makeReadable((distOb.distance / obOb.fact[2]) / obOb.fact[3]);
+  } else if (obOb.fact[4] === 'weight') {
+    factMath = makeReadable(obOb.fact[2] * solution);
+  }
+  funFact.innerText = obOb.fact[0] + factMath + obOb.fact[1];
 }
 
 function makeReadable(number) {
   var start = 3;
   if (number > 1000) {
     number = Math.round(number);
+    $("#theCount").css("background-color", "transparent");
+  } else if (number < 0.005) {
+    number = Math.round(number * 1000000) / 1000000;
+    // start = 6;
+    $("#theCount").css("background-color", "black");
+    return number;
   } else {
     number = Math.round(number * 100) / 100;
     start = 6;
+    $("#theCount").css("background-color", "black");
   }
   var newNum = number.toString().split('');
   for (var j = 0; j < newNum.length; j++) {
     if (newNum[j] === 'e' || newNum[j] === '+') {
+      $("#theCount").css("background-color", "black");
       return newNum.join('');
     }
   }
@@ -111,12 +144,18 @@ function makeReadable(number) {
   return restore.join('');
 }
 
-function changeSizes(destinationIn){
+function changeSizes(destinationIn) {
   $(".mars-container img").animate({
     width: data.destinations[destinationIn].earthRelative[0],
     right: data.destinations[destinationIn].earthRelative[1],
     top: data.destinations[destinationIn].earthRelative[2]
   }, 0);
+}
+
+function getRandom(data) {
+  var list = Object.keys(data);
+  var value = Math.floor(Math.random() * list.length);
+  return list[value];
 }
 //////------ Beginning------- ////////
 
@@ -126,7 +165,6 @@ createDataSet();
 $(document).ready(function() {
   var _welcomeInterval;
   var fadeTime = 2000;
-  // var _moveEarthInterval;
 
   function fadeInLastImg() {
     var backImg = $('.earth-container img:first');
@@ -147,59 +185,64 @@ $(document).ready(function() {
       header.style.margin = '22px';
       header.innerText = 'How many elephants between Earth and Mars?';
     }
-    // console.log(counter);
+
     counter++;
     if (counter < 11) {
       fadeInLastImg();
     }
-    if(counter < 15){
-    if (counter > 10) {
-      $(".earth-container img").animate({
-        width: "10%",
-        left: "10%",
-        top: "40%"
-      }, fadeTime);
+    if (counter < 15) {
+      if (counter > 10) {
+        $(".earth-container img").animate({
+          width: "10%",
+          left: "10%",
+          top: "40%"
+        }, fadeTime);
+      }
+      if (counter > 11) {
+        $(".mars-container img").animate({
+          opacity: '1'
+        }, 1000);
+      }
+      if (counter > 12) {
+        $('.welcome').fadeTo(fadeTime / 2, 0);
+        $(".object-container img").animate({
+          opacity: '1'
+        }, 1000);
+      }
+      if (counter > 13) {
+        $(".user-form").css("display", "flex");
+        $(".welcome").css("display", "none");
+        $(".user-form").animate({
+          opacity: '1'
+        }, 1000);
+        $(".value").animate({
+          opacity: '1'
+        }, 1000);
+        $(".fact").animate({
+          opacity: '1'
+        }, 1000);
+        // $(".background-layer").fadeTo(fadeTime, 1);
+      }
     }
-    if (counter > 11) {
-      $(".mars-container img").animate({
-        opacity: '1'
-      }, 1000);
-    }
-    if (counter > 12) {
-      $('.welcome').fadeTo(fadeTime / 2, 0);
-      $(".object-container img").animate({
-        opacity: '1'
-      }, 1000);
-      // $("body").css("background-image","url(https://i.ytimg.com/vi/EZ7la-hMNuk/maxresdefault.jpg)").fadeIn(4000);
-    }
-    if (counter > 13) {
-      $(".user-form").css("display", "flex");
-      $(".welcome").css("display", "none");
-      $(".user-form").animate({
-        opacity: '1'
-      }, 1000);
-      $(".value").animate({
-        opacity: '1'
-      }, 1000);
-      $(".background-layer").fadeTo(fadeTime, 1);
-    }
-  }
-}, 1200); //1200 after testing
+  }, 1200); //1200 after testing
 });
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();
-  // result.innerHTML = '';
   var objectIn = event.target.elements.object.value;
   var destinationIn = event.target.elements.destination.value;
   submitted(objectIn, destinationIn);
 });
 
-
-
-// $(document).on('click', '.image', function(){
-//   var pTag = document.createElement('p');
-//   pTag.innerText = 'helllllo';
-//     // result.append(pTag);
-//   // console.log('clicked');
-// });
+formRandom.addEventListener('submit', function(event) {
+  event.preventDefault();
+  var objectIn = getRandom(data.objects);
+  var destinationIn = getRandom(data.destinations);
+  select1.innerText = objectIn;
+  select1.setAttribute('value', objectIn);
+  select2.innerText = destinationIn;
+  select2.setAttribute('value', destinationIn);
+  $('.box1').val(objectIn);
+  $('.box2').val(destinationIn);
+  submitted(objectIn, destinationIn);
+});

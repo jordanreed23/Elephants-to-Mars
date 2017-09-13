@@ -12,7 +12,7 @@ body {
   justify-content: center;
 }
 
-.welcome, .value {
+.welcome, .value, .fact {
   color: white;
   font-family: 'Raleway Dots', cursive;
   font-size: 60px;
@@ -74,6 +74,9 @@ body {
   box-shadow: 0 12px 16px 0 rgba(255, 189, 0, 0.1), 0 15px 30px 0 rgba(255, 180, 0, 0.02);
 }
 
+.random {
+ width: 100px;
+}
 .earth-container {
   display: flex;
   justify-content: center;
@@ -91,12 +94,7 @@ body {
   right: 10%;
   top: 40%;
   width: 6%;
-  /*-moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: FlipH;
-  -ms-filter: "FlipH";*/
+  pointer-events:none;
 }
 
 .object-container {
@@ -118,6 +116,14 @@ body {
   left: 40%;
 }
 
+.fact{
+  position: absolute;
+  top:80%;
+  left:10%;
+  width:40%;
+  font-size: 20px;
+  font-family: 'Nova Flat', cursive;
+}
 
 /*Tablet Styles*/
 
@@ -154,7 +160,8 @@ body {
     left: 10%;
   }
   .menu {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
   }
   .welcome, .value {
     font-family: 'Nova Flat', cursive;
@@ -162,7 +169,8 @@ body {
   }
   .user-form {
     flex-direction: column;
-    margin-top: 100%;
+    margin-top: 90%;
+    bottom: 10%
   }
   .para {
     margin: 5px 0;
@@ -176,11 +184,25 @@ body {
     width: 100%;
   }
   .browser-default {
-    width: 80%;
+    width: auto;
     height: 40px;
   }
   .button {
     margin-top: 10px;
     width: 100px;
+    margin-right:15px;
+  }
+  .random{
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+    margin-right: -53px;
+    /*margin-top: 100%;*/
+    /*margin-right:30px;*/
+    /*left: 30%;*/
+  }
+
+  .fact{
+    display:none;
   }
 }
