@@ -21,6 +21,11 @@ var data = {
       "width": 0.0002426,
       "fact": ["Lebron James can throw a basketball at 40 mph. At that speed it would take ", " years to arrive at this destination.", 64.3738, 8760, 'speed']
     },
+    "cheetahs": {
+      "img": "http://www.pngpix.com/wp-content/uploads/2016/10/PNGPIX-COM-Cheetah-PNG-Transparent-Image-4.png",
+      "width": 0.00149352,
+      "fact": ["At top speed it would take a cheetah ", " years to run to this destination.", 120, 8760, 'speed']
+    },
     "elephants": {
       "img": "http://www.pngmart.com/files/4/Elephant-Transparent-Background.png",
       "width": 0.006, //in kilometers
@@ -31,32 +36,39 @@ var data = {
       "width": 0.0249936,
       "fact": ["At top speed it would take a blue whale ", " years to swim to this destination.", 50, 8760, 'speed']
     },
+    "USAs": {
+      "img": "http://www.mapsmith.net/usaresources/NASS_CDL_Screenshot.png",
+      "width": 4313.042,
+      "fact": ["If the US was the size of our solar system, the distance from Earth to the Sun would get you 13.6 miles from the coast.", "If the US was the size of our solar system, the distance from Earth to Mars would get you 8 miles from the coast.", 0, 0, 'other']
+    },
     "Earths": {
       "img": "https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg",
       "width": 12742,
-      "fact": ["This many Earths would have a mass of ", " gigagrams.", 5.972e+18, 0, 'weight']
+      "fact": ["This many Earths would have ", "% the mass of the Sun.", 5.972e+24, 1.989e+30, 'weight']
     },
     "Jupiters": {
       "img": "https://userscontent2.emaze.com/images/eda4e93e-1a48-4f61-9c4d-edb0921f6eab/f31559bc-72f8-49dd-8b94-1731b173ce9c.png",
       "width": 139822,
+      "fact": ["This many Jupiters would have ", "% the mass of the Sun.", 1.898e+27, 1.989e+30, 'weight']
     },
     "Suns": {
       "img": "https://stevengoddard.files.wordpress.com/2014/03/screenhunter_318-mar-06-03-45.gif",
       "width": 1391400,
+      "fact": ["After the Sun, Alpha Centauri A is the closest star to Earth. It is 4.37 light-years away.", "The Sun's circumference is 109 times larger than Earth and weighs 333,000 times Earth. About 1,300,000 Earths can fit in the Sun.", 4.37, 1.989e+30, 'other']
     },
     "light-minutes": {
       "img": "http://fc08.deviantart.net/fs70/f/2010/011/b/0/First_Phaser_beam_made_in_3ds_by_UFPElessar.png",
       "width": 17990000,
+      "fact": ["Light can travel 11,180,000 miles in one minute. This is approximately 874,000 times faster than the speed of sound through air.", "It would take nearly 50 million elephants to cover the distance light can travel in one second.", 11180000, 0, 'other']
     }
-
   },
-
   "destinations": {
     /////-----Add Destinations Here----////////
     "The International Space Station": {
       "img": "http://www.washingtonpost.com/wp-srv/special/national/nasa-iss/img/ISS-2011.png",
       "distance": 408,
-      "earthRelative": ["6%", "10%", "40%"]
+      "earthRelative": ["6%", "10%", "40%"],
+      "fact": ["The International Space Station orbits Earth at a speed of ", " mph. That's 10 times faster than a bullet but nearly 40,000 times slower than the speed of light.", 17130, 1700, 'speed']
     },
     "the Moon": {
       "img": "https://www.nasa.gov/sites/default/files/thumbnails/image/christmas2015fullmoon.jpg",
@@ -91,7 +103,7 @@ var data = {
     "Saturn": {
       "img": "https://www.romsenter.no/extension/romsenter/design/romsenter/images/solar/saturn.png",
       "distance": 1200000000,
-      "earthRelative": ["90%", "-25%", "20%"]
+      "earthRelative": ["90%", "-35%", "20%"]
     },
     "Uranus": {
       "img": "http://userscontent2.emaze.com/images/b03623d2-7ded-4197-bfb3-0479da324737/3ca51605-3079-4fdf-ac73-9517fc533f82.png",
@@ -108,6 +120,5 @@ var data = {
       "distance": 4280000000,
       "earthRelative": ["3%", "10%", "40%"]
     }
-
   }
 };

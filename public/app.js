@@ -90,10 +90,9 @@ function submitted(objectIn, destinationIn) {
   setTimeout(function() {
     $("#fun-fact").animate({
       opacity: '1'
-    }, 4000);
-  }, 2000);
+    }, 2500);
+  }, 1000);
 }
-
 
 function fetchData(objectIn, destinationIn) {
   var obOb = data.objects[objectIn];
@@ -105,13 +104,27 @@ function fetchData(objectIn, destinationIn) {
   destImg.setAttribute('src', distOb.img);
 
   if (obOb.fact[4] === 'tiny') {
-    factMath = makeReadable((obOb.fact[3] * solution) / obOb.fact[2]);
+    factMath = (obOb.fact[3] * solution) / obOb.fact[2];
+    var bonus = '';
+    if (factMath >= 100000) {
+      bonus = ' This is ' + makeReadable(factMath / 100000) + ' times longer than the Milky Way.';
+    }
+    factMath = makeReadable(factMath);
+    funFact.innerText = obOb.fact[0] + factMath + obOb.fact[1] + bonus;
   } else if (obOb.fact[4] === 'speed') {
     factMath = makeReadable((distOb.distance / obOb.fact[2]) / obOb.fact[3]);
+    funFact.innerText = obOb.fact[0] + factMath + obOb.fact[1];
+  } else if (destinationIn === 'The International Space Station') {
+    factMath = makeReadable(distOb.fact[2]);
+    funFact.innerText = distOb.fact[0] + factMath + distOb.fact[1];
   } else if (obOb.fact[4] === 'weight') {
-    factMath = makeReadable(obOb.fact[2] * solution);
+    factMath = makeReadable((obOb.fact[2] * solution) / obOb.fact[3] * 100);
+    funFact.innerText = obOb.fact[0] + factMath + obOb.fact[1];
+  } else if (obOb.fact[4] === 'other') {
+    funFact.innerText = obOb.fact[Math.floor(Math.random() * (obOb.fact.length - 3))];
+  } else {
+    funFact.innerText = '';
   }
-  funFact.innerText = obOb.fact[0] + factMath + obOb.fact[1];
 }
 
 function makeReadable(number) {
@@ -121,7 +134,6 @@ function makeReadable(number) {
     $("#theCount").css("background-color", "transparent");
   } else if (number < 0.005) {
     number = Math.round(number * 1000000) / 1000000;
-    // start = 6;
     $("#theCount").css("background-color", "black");
     return number;
   } else {
@@ -175,7 +187,7 @@ $(document).ready(function() {
   }
 
   _welcomeInterval = setInterval(function() {
-    if (counter >= 1 && counter < 2) {
+    if (counter >= 0 && counter < 2) {
       $('.welcome').fadeTo(fadeTime, 1);
     } else if (counter > 4 && counter < 6) {
       $('.welcome').fadeTo(fadeTime, 0);
@@ -187,7 +199,10 @@ $(document).ready(function() {
     }
 
     counter++;
-    if (counter < 11) {
+    if (counter < 2) {
+      $('.earth-container img').fadeTo(fadeTime, 1);
+    }
+    if (counter < 11 && counter > 1) {
       fadeInLastImg();
     }
     if (counter < 15) {
@@ -199,32 +214,21 @@ $(document).ready(function() {
         }, fadeTime);
       }
       if (counter > 11) {
-        $(".mars-container img").animate({
-          opacity: '1'
-        }, 1000);
+        $('.mars-container img').fadeTo(1000, 1);
       }
       if (counter > 12) {
         $('.welcome').fadeTo(fadeTime / 2, 0);
-        $(".object-container img").animate({
-          opacity: '1'
-        }, 1000);
+        $('.object-container img').fadeTo(1000, 1);
       }
       if (counter > 13) {
         $(".user-form").css("display", "flex");
         $(".welcome").css("display", "none");
-        $(".user-form").animate({
-          opacity: '1'
-        }, 1000);
-        $(".value").animate({
-          opacity: '1'
-        }, 1000);
-        $(".fact").animate({
-          opacity: '1'
-        }, 1000);
-        // $(".background-layer").fadeTo(fadeTime, 1);
+        $('.user-form').fadeTo(1000, 1);
+        $('.value').fadeTo(1000, 1);
+        $('.fact').fadeTo(1000, 1);
       }
     }
-  }, 1200); //1200 after testing
+  }, 1200);
 });
 
 form.addEventListener('submit', function(event) {
