@@ -14,17 +14,19 @@ var destImg = document.getElementById('destination-image');
 var funFact = document.getElementById('fun-fact');
 
 var counter = 0;
+var errorSkip = false;
 
 /////------ Functions------////////
 
 function getEarth(results) {
   for (var i = 0; i < results.length; i++) {
     var imgTag = document.createElement('img');
-    var date = results[i].date.split(' ');
-    date[0] = date[0].split('-').join('/');
-    var img = "https://epic.gsfc.nasa.gov/archive/natural/" + date[0] + "/jpg/" + results[i].image + '.jpg';
+    var date = results[i].identifier.slice(0, 8);
+    date = date.slice(0, 4) + '/' + date.slice(4, 6) + '/' + date.slice(6, 8);
+    var img = "https://epic.gsfc.nasa.gov/archive/natural/" + date + "/png/" + results[i].image + '.png';
     imgTag.setAttribute('src', img);
     earth.append(imgTag);
+    console.log(date);
   }
 }
 
@@ -36,6 +38,13 @@ function fetchNasa() {
           console.log(results);
           getEarth(results);
         });
+    })
+    .catch(function(error) {
+      var imgTag = document.createElement('img');
+      var img = "https://upload.wikimedia.org/wikipedia/commons/2/22/Earth_Western_Hemisphere_transparent_background.png";
+      imgTag.setAttribute('src', img);
+      earth.append(imgTag);
+      errorSkip = true;
     });
 }
 
@@ -202,7 +211,7 @@ $(document).ready(function() {
     if (counter < 2) {
       $('.earth-container img').fadeTo(fadeTime, 1);
     }
-    if (counter < 11 && counter > 1) {
+    if (counter < 11 && counter > 1 && errorSkip == false) {
       fadeInLastImg();
     }
     if (counter < 15) {
